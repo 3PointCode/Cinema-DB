@@ -6,6 +6,7 @@
 #   * Remove `managed = False` lines if you wish to allow Django to create, modify, and delete the table
 # Feel free to rename the models, but don't rename db_table values or field names.
 from django.db import models
+import uuid
 
 class AuthGroup(models.Model):
     name = models.CharField(unique=True, max_length=150)
@@ -242,3 +243,38 @@ class Statusrezerwacji(models.Model):
     class Meta:
         managed = False
         db_table = 'statusrezerwacji'
+
+class FilmyKlient(models.Model):
+    tytul = models.CharField(db_column='Tytul', max_length=100, blank=True, null=False, primary_key=True)  # Field name made lowercase.
+    opis = models.TextField(db_column='Opis', blank=True, null=True)  # Field name made lowercase.
+    nazwagatunku = models.CharField(db_column='NazwaGatunku', max_length=50, blank=True, null=True)  # Field name made lowercase.
+    imie = models.CharField(db_column='Imie', max_length=50, blank=True, null=True)  # Field name made lowercase.
+    nazwisko = models.CharField(db_column='Nazwisko', max_length=50, blank=True, null=True)  # 
+    czastrwania = models.SmallIntegerField(db_column='CzasTrwania', blank=True, null=True)  # Field name made lowercase.
+    rokprodukcji = models.SmallIntegerField(db_column='RokProdukcji', blank=True, null=True)  # Field name made lowercase.
+    wiekodbiorcy = models.IntegerField(db_column='WiekOdbiorcy', blank=True, null=True)  # Field
+
+    class Meta:
+        managed = False
+        db_table = 'filmyklient'
+
+class RezerwacjaKlient(models.Model):
+    seansid = models.IntegerField(db_column='SeansID', primary_key=True)  # Field name made lowercase.
+    miejsce = models.CharField(db_column='Miejsce', max_length=4, blank=True, null=True)  # Field name made lowercase.
+    class Meta:
+        managed = False
+        db_table = 'rezerwacjaklient'
+
+
+class SeansKlient(models.Model):
+    data = models.DateField(db_column='Data', blank=True, null=False, primary_key=True)  # Field name made lowercase.
+    godzina = models.TimeField(db_column='Godzina', blank=True, null=True)  # Field name made lowercase.
+    salaid = models.IntegerField(db_column='NumerSali')  # Field name 
+    tytul = models.CharField(db_column='Tytul', max_length=100, blank=True, null=True)  # Field name made lowercase.
+    seansid = models.IntegerField(db_column='SeansID')  # Field name made lowercase.
+    jezykDubbingu = models.CharField(db_column='JezykDubbingu', max_length=50, blank=True, null=True)  # Field name made lowercase.
+    jezykNapisow = models.CharField(db_column='JezykNapisow', max_length=50, blank=True, null=True)  # Field name made lowercase.
+
+    class Meta:
+        managed = False
+        db_table = 'seansklient'
