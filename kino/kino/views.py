@@ -7,8 +7,6 @@ def index(request):
 
 def repertuar(request):
     filmy = Filmy.objects.all()
-    for i in filmy:
-        print(i)
     context = {
         'filmy': filmy,
         'message': "hello world"
