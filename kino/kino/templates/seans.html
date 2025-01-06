@@ -1,11 +1,51 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="{% static 'kino/seans.css' %}">
+    <script>
+        function handleSeatSelection(seat) {
+            let seats = document.querySelectorAll(".seat");
+            for(var s of seats){
+                s.classList.remove("selected");
+            }
+            if(!seat.classList.contains("taken")){
+                seat.classList.add("selected");
+                let selectedSeat = document.getElementById('id_seat');
+                selectedSeat.value = seat.dataset.id;
+            }
+        }
+    </script>
 </head>
 <body>
-    seans
+    <div class="wrapper">
+        <div class="info">
+            <p>Tytuł filmu: {{ seansData.tytul }}</p>
+            <p>Data projekcji: {{ seansData.data|date:'d-m-Y' }} : {{ seansData.godzina|date:'H:i' }}</p>
+            <p>Numer sali: {{ seansData.salaid }}</p>
+            <p>Język dubbingu: {{ seansData.jezykDubbingu}}</p>
+            <p>Język napisów: {{ seansData.jezykNapisow }}</p>
+        </div>
+
+        <div class="cinema">
+            <div class="screen">&nbsp;</div>
+            <div class="audience">
+                {% for i in rowRange %}
+                    {% for j in columnRange %}
+                        <div data-id="{{i}}-{{j}}" class="seat {% for data in seatData %}{% if i == data.0 and j == data.1 %}taken{% endif %}{% endfor %}" onclick="handleSeatSelection(this)">&nbsp;</div>
+                    {% endfor %}
+                {% endfor %}
+               
+            </div>
+            <form method="post">
+                {% csrf_token %}
+                {{ form }}
+                <button type="submit">Zarezerwuj miejsce</button>
+            </form>
+        </div>
+    </div>
 </body>
 </html>
