@@ -6,5 +6,6 @@ urlpatterns = [
     path("", views.index, name="index"),
     path("repertuar", views.repertuar, name="repertuar"),
     path("filmy", views.filmy, name="filmy"),
-    path("seans", views.seans, name="seans"),
+    path("seans/<int:id>/", views.seans, name="seans"),
+    path("rezerwacjaSukces", views.rezerwacjaSukces, name="rezerwacjaSukces"),
 ]
