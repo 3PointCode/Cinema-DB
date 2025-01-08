@@ -3,9 +3,149 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Kino - Repertuar</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #000;
+            color: white;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .movie-section {
+            margin-bottom: 40px;
+        }
+
+        .movie-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #444;
+            padding-bottom: 10px;
+        }
+
+        .movie-poster img {
+            width: 150px;
+            border-radius: 5px;
+        }
+
+        .movie-details {
+            flex-grow: 1;
+        }
+
+        .movie-title {
+            font-size: 24px;
+            margin: 0;
+        }
+
+        .movie-description {
+            margin: 10px 0;
+            font-size: 14px;
+            color: #ccc;
+        }
+
+        .sessions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .session {
+            padding: 10px;
+            border: 1px solid #555;
+            border-radius: 3px;
+            background-color: #222;
+            text-align: center;
+            flex: 1;
+            min-width: 100px;
+            cursor: pointer;
+        }
+
+        .session:hover {
+            background-color: #333;
+        }
+
+        .show-more {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .show-more button {
+            padding: 10px 20px;
+            border: 1px solid white;
+            background-color: transparent;
+            color: green;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .show-more button:hover {
+            background-color: #444;
+        }
+    </style>
 </head>
 <body>
-    repertuar
+    <div class="container">
+
+        <!-- Movie 1 -->
+        <div class="movie-section">
+            <div class="movie-header">
+                <div class="movie-poster">
+                    <img src="https://via.placeholder.com/150" alt="Poster">
+                </div>
+                <div class="movie-details">
+                    <h1 class="movie-title">Interstellar (2014)</h1>
+                    <p class="movie-description">Byt ludzkości na Ziemi dobiega końca wskutek zmian klimatycznych. Grupa naukowców odkrywa tunel czasoprzestrzenny, który umożliwia poszukiwanie nowego domu.</p>
+                    <p><strong>Reżyseria:</strong> Christopher Nolan</p>
+                    <p><strong>Obsada:</strong> Matthew McConaughey, Anne Hathaway, Jessica Chastain, Michael Caine, John Lithgow</p>
+                    <p><strong>Czas:</strong> 169 minut</p>
+                    <p><strong>PEGI:</strong> 13</p>
+                </div>
+            </div>
+            <div class="sessions">
+                <div class="session">12:25 - 14:43<br>Sala 5<br>2D, Napisy</div>
+                <div class="session">17:45 - 20:03<br>Sala 5<br>2D, Napisy</div>
+                <div class="session">20:15 - 22:33<br>Sala 5<br>2D, Napisy</div>
+                <div class="session">22:05 - 00:23<br>Sala 9<br>2D, Napisy</div>
+            </div>
+            <div class="show-more">
+                <button>+ POKAŻ WSZYSTKIE SEANSE</button>
+            </div>
+        </div>
+
+        <!-- Movie 2 -->
+        <div class="movie-section">
+            <div class="movie-header">
+                <div class="movie-poster">
+                    <img src="https://via.placeholder.com/150" alt="Poster">
+                </div>
+                <div class="movie-details">
+                    <h1 class="movie-title">Incepcja (2010)</h1>
+                    <p class="movie-description">Czasy, gdy technologia pozwala na wchodzenie w świat snów. Złodziej Cobb ma za zadanie wszczepić myśl do śpiącego umysłu.</p>
+                    <p><strong>Reżyseria:</strong> Christopher Nolan</p>
+                    <p><strong>Obsada:</strong> Leonardo DiCaprio, Joseph Gordon-Levitt, Elliot Page, Tom Hardy, Ken Watanabe</p>
+                    <p><strong>Czas:</strong> 148 minut</p>
+                    <p><strong>PEGI:</strong> 13</p>
+                </div>
+            </div>
+            <div class="sessions">
+                <div class="session">10:00 - 12:00<br>Sala 1<br>2D, Napisy</div>
+                <div class="session">14:00 - 16:00<br>Sala 1<br>2D, Napisy</div>
+                <div class="session">18:00 - 20:00<br>Sala 1<br>2D, Napisy</div>
+            </div>
+            <div class="show-more">
+                <button>+ POKAŻ WSZYSTKIE SEANSE</button>
+            </div>
+        </div>
+
+    </div>
 </body>
 </html>
