@@ -1,17 +1,74 @@
 {% load static %}
 <!DOCTYPE html>
+<html>
+<head>
+    <title>Film Page</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-white text-black">
+    <div class="flex justify-center items-center py-8">
+        <nav class="flex space-x-16">
+            <a href="#" class="text-xl font-bold">FILMY</a>
+            <a href="#" class="text-xl">STRONA GŁÓWNA</a>
+            <a href="#" class="text-xl">FILMY</a>
+            <a href="#" class="text-xl">SEANS</a>
+        </nav>
+    </div>
+    <div class="max-w-4xl mx-auto grid grid-cols-3 gap-4">
+        <div class="bg-gray-300 rounded-lg border border-black h-36 flex items-center justify-center">
+            <span class="text-xl font-bold">FILM 1</span>
+        </div>
+        <div class="bg-gray-300 rounded-lg border border-black h-36 flex items-center justify-center">
+            <span class="text-xl font-bold">FILM 2</span>
+        </div>
+        <div class="bg-gray-300 rounded-lg border border-black h-36 flex items-center justify-center">
+            <span class="text-xl font-bold">FILM 3</span>
+        </div>
+        <div class="bg-gray-300 rounded-lg border border-black h-36 flex items-center justify-center">
+            <span class="text-xl font-bold">FILM 4</span>
+        </div>
+        <div class="bg-gray-300 rounded-lg border border-black h-36 flex items-center justify-center">
+            <span class="text-xl font-bold">FILM 5</span>
+        </div>
+        <div class="bg-gray-300 rounded-lg border border-black h-36 flex items-center justify-center">
+            <span class="text-xl font-bold">FILM 6</span>
+        </div>
+    </div>
+</body>
+</html>
+
+<!--
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="{% static 'kino/filmy.css' %}">
+    <title>Film Page</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div id="cos">dsadsadadsa</div>
-    {{ message }}
-    {% for film in filmy %}
-        {{ film.miejsce }}
-    {% endfor %}
+    <header>
+        <nav>
+            <a href="#" class="active">FILMY</a>
+            <a href="#">STRONA GŁÓWNA</a>
+            <a href="#">FILMY</a>
+            <a href="#">SEANS</a>
+        </nav>
+    </header>
+    <main>
+        <div class="film-grid">
+            <button>FILM 1</button>
+            <button>FILM 2</button>
+            <button>FILM 3</button>
+            <button>FILM 4</button>
+            <button>FILM 5</button>
+            <button>FILM 6</button>
+        </div>
+    </main>
 </body>
 </html>
+-->

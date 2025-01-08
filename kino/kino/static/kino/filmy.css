@@ -1,3 +1,74 @@
-#cos{
-    background-color: pink;
+/* styles.css */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f8f8f8;
+}
+
+header {
+    background-color: #fff;
+    padding: 15px 20px;
+    border-bottom: 1px solid #ccc;
+}
+
+nav {
+    display: flex;
+    gap: 20px;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+nav a {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    padding: 5px 10px;
+}
+
+nav a.active {
+    text-decoration: underline;
+}
+
+main {
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.film-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    width: 100%;
+    max-width: 600px;
+}
+
+.film-grid button {
+    background-color: #d3d3d3;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    padding: 20px;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.film-grid button:hover {
+    background-color: #bbb;
+}
+
+body::-webkit-scrollbar {
+    width: 8px;
+}
+
+body::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 4px;
+}
+
+body::-webkit-scrollbar-thumb:hover {
+    background-color: #555;
 }
