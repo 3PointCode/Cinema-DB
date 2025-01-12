@@ -1,74 +1,100 @@
 {% load static %}
 <!DOCTYPE html>
-<html>
-<head>
-    <title>Film Page</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-        }
-    </style>
-</head>
-<body class="bg-white text-black">
-    <div class="flex justify-center items-center py-8">
-        <nav class="flex space-x-16">
-            <a href="#" class="text-xl font-bold">FILMY</a>
-            <a href="#" class="text-xl">STRONA GŁÓWNA</a>
-            <a href="#" class="text-xl">FILMY</a>
-            <a href="#" class="text-xl">SEANS</a>
-        </nav>
-    </div>
-    <div class="max-w-4xl mx-auto grid grid-cols-3 gap-4">
-        <div class="bg-gray-300 rounded-lg border border-black h-36 flex items-center justify-center">
-            <span class="text-xl font-bold">FILM 1</span>
-        </div>
-        <div class="bg-gray-300 rounded-lg border border-black h-36 flex items-center justify-center">
-            <span class="text-xl font-bold">FILM 2</span>
-        </div>
-        <div class="bg-gray-300 rounded-lg border border-black h-36 flex items-center justify-center">
-            <span class="text-xl font-bold">FILM 3</span>
-        </div>
-        <div class="bg-gray-300 rounded-lg border border-black h-36 flex items-center justify-center">
-            <span class="text-xl font-bold">FILM 4</span>
-        </div>
-        <div class="bg-gray-300 rounded-lg border border-black h-36 flex items-center justify-center">
-            <span class="text-xl font-bold">FILM 5</span>
-        </div>
-        <div class="bg-gray-300 rounded-lg border border-black h-36 flex items-center justify-center">
-            <span class="text-xl font-bold">FILM 6</span>
-        </div>
-    </div>
-</body>
-</html>
-
-<!--
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Film Page</title>
-    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #000; /* Dark background */
+            color: white; /* Light text */
+            margin: 0;
+            height: 100vh; /* Full viewport height */
+            display: flex;
+            flex-direction: column;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            padding: 20px 0;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            color: #0f0; /* Green hover effect */
+        }
+
+        main {
+            flex: 1; /* Allow main to take up remaining height */
+            overflow-y: auto; /* Enable vertical scrolling */
+        }
+
+        .film-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* 3 columns */
+            gap: 20px;
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+        }
+
+        .film-tile {
+            background-color: #111; /* Slightly lighter for contrast */
+            border: 1px solid #333;
+            border-radius: 10px;
+            text-align: center;
+            padding: 20px;
+            height: 120px; /* Fixed height for uniformity */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .film-tile span {
+            font-size: 18px;
+            font-weight: bold;
+            color: #070; /* Green for film titles */
+        }
+
+        .film-tile:hover {
+            background-color: #222; /* Lighter background on hover */
+        }
+    </style>
 </head>
 <body>
-    <header>
+    <div>
         <nav>
-            <a href="#" class="active">FILMY</a>
-            <a href="#">STRONA GŁÓWNA</a>
-            <a href="#">FILMY</a>
-            <a href="#">SEANS</a>
+            <a href="#" class="text-xl font-bold">FILMY</a>
+            <a href="#" class="text-xl">STRONA GŁÓWNA</a>
+            <a href="#" class="text-xl">SEANS</a>
         </nav>
-    </header>
+    </div>
     <main>
         <div class="film-grid">
-            <button>FILM 1</button>
-            <button>FILM 2</button>
-            <button>FILM 3</button>
-            <button>FILM 4</button>
-            <button>FILM 5</button>
-            <button>FILM 6</button>
+            <!-- Original 6 films -->
+            <div class="film-tile"><span>FILM 1</span></div>
+            <div class="film-tile"><span>FILM 2</span></div>
+            <div class="film-tile"><span>FILM 3</span></div>
+            <div class="film-tile"><span>FILM 4</span></div>
+            <div class="film-tile"><span>FILM 5</span></div>
+            <div class="film-tile"><span>FILM 6</span></div>
+
+            <!-- Additional 6 films -->
+            <div class="film-tile"><span>FILM 7</span></div>
+            <div class="film-tile"><span>FILM 8</span></div>
+            <div class="film-tile"><span>FILM 9</span></div>
+            <div class="film-tile"><span>FILM 10</span></div>
+            <div class="film-tile"><span>FILM 11</span></div>
+            <div class="film-tile"><span>FILM 12</span></div>
         </div>
     </main>
 </body>
 </html>
--->
