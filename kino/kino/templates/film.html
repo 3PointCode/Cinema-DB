@@ -132,11 +132,11 @@
         <!-- Left Panel -->
         <div class="left-panel">
             <div class="attribute"><strong>Tytuł filmu:</strong> {{ film.tytul }}</div>
-            <div class="attribute"><strong>Gatunek:</strong> {{ film.gatunek }}</div>
-            <div class="attribute"><strong>Reżyser:</strong> {{ film.rezyser }}</div>
-            <div class="attribute"><strong>Czas trwania:</strong> {{ film.czas_trwania }} min</div>
-            <div class="attribute"><strong>Rok produkcji:</strong> {{ film.rok_produkcji }}</div>
-            <div class="attribute"><strong>PEGI:</strong> {{ film.pegi }}</div>
+            <div class="attribute"><strong>Gatunek:</strong> {{ gatunek|default:"Not available" }}</div>
+            <div class="attribute"><strong>Reżyser:</strong> {{ rezyser|default:"Not available" }}</div>
+            <div class="attribute"><strong>Czas trwania:</strong> {{ film.czastrwania|default:"Not available" }} min</div>
+            <div class="attribute"><strong>Rok produkcji:</strong> {{ film.rokprodukcji|default:"Not available" }}</div>
+            <div class="attribute"><strong>PEGI:</strong> {{ film.wiekodbiorcy|default:"Not available" }}</div>
             <div class="section">
                 <strong>Opis filmu:</strong>
                 <p>{{ film.opis }}</p>

@@ -30,7 +30,7 @@ def filmy(request):
     return render(request, 'filmy.html', context)
 
 def film(request, tytul):
-    film = FilmyKlient.objects.filter(tytul=tytul).first()
+    film = Filmy.objects.select_related('gatunekid', 'rezyserid').filter(tytul=tytul).first()
     if not film:
         return HttpResponseBadRequest("Film not found")
     
@@ -40,6 +40,8 @@ def film(request, tytul):
         'film': film,
         'seanse': seanse,
         'templatka': loader.get_template('menu.html').render(),
+        'gatunek': film.gatunekid.nazwagatunku if film.gatunekid else None,
+        'rezyser': f"{film.rezyserid.imie} {film.rezyserid.nazwisko}" if film.rezyserid else None,
     }
     return render(request, 'film.html', context)
 
