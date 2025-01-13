@@ -13,7 +13,7 @@ def index(request):
 def repertuar(request):
     filmy = FilmyKlient.objects.all()
     for f in filmy:
-        seanse = SeansKlient.objects.all().filter(tytul=f.tytul)
+        seanse = SeansKlient.objects.all().order_by('data').filter(tytul=f.tytul)[:4]
         f.seanseFilmu = seanse
     context = {
         'filmy': filmy,

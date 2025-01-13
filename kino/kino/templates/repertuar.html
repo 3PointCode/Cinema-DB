@@ -70,6 +70,10 @@
             min-width: 100px;
             cursor: pointer;
         }
+        .session a{
+            color: white;
+            text-decoration: none;
+        }
 
         .session:hover {
             background-color: #333;
@@ -134,11 +138,16 @@
                     </div>
                 </div>
                 <div class="sessions">
-                    {{ film.seanseFilmu }}
-                    <div class="session">12:25 - 14:43<br>Sala 5<br>2D, Napisy</div>
-                    <div class="session">17:45 - 20:03<br>Sala 5<br>2D, Napisy</div>
-                    <div class="session">20:15 - 22:33<br>Sala 5<br>2D, Napisy</div>
-                    <div class="session">22:05 - 00:23<br>Sala 9<br>2D, Napisy</div>
+                    {% for s in film.seanseFilmu %}
+                    <div class="session">
+                        <a href="/kino/seans/{{ s.seansid }}">    
+                                <p>Data: {{ s.data|date:'d-m-Y' }}  {{ s.godzina|date:'H:i' }}</p>
+                                <p>Numer sali: {{ s.salaid }}</p>
+                                <p>Dubbing: {{ s.jezykDubbingu }}</p>
+                                <p>Napisy: {{ s.jezykNapisow}}</p>
+                            </div>
+                        </a>
+                    {% endfor %}
                 </div>
                 <div class="show-more">
                     <button>+ POKAŻ WSZYSTKIE SEANSE</button>
