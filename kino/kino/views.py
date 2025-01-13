@@ -30,10 +30,16 @@ def filmy(request):
     return render(request, 'filmy.html', context)
 
 def film(request, tytul):
-    film = FilmyKlient.objects.all().filter(tytul=tytul).first()
+    film = FilmyKlient.objects.filter(tytul=tytul).first()
+    if not film:
+        return HttpResponseBadRequest("Film not found")
+    
+    seanse = SeansKlient.objects.filter(tytul=tytul).order_by('data', 'godzina')
+
     context = {
         'film': film,
-        'templatka': loader.get_template('menu.html').render()
+        'seanse': seanse,
+        'templatka': loader.get_template('menu.html').render(),
     }
     return render(request, 'film.html', context)
 

@@ -35,7 +35,7 @@
             color: #0f0; /* Green hover effect */
         }
 
-        nav a:active {
+        nav a:active, nav a.active {
             color: #070;        
         }
 
@@ -44,39 +44,123 @@
             overflow-y: auto; /* Enable vertical scrolling */
         }
 
-        .film-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr); /* 3 columns */
+        .content {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
             gap: 20px;
-            max-width: 1200px;
-            margin: 20px auto;
             padding: 20px;
         }
 
-        .film-tile {
+        .left-panel, .right-panel {
+            flex: 1;
+            padding: 10px;
             background-color: #111; /* Slightly lighter for contrast */
             border: 1px solid #333;
             border-radius: 10px;
-            text-align: center;
-            padding: 20px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
         }
 
-        .film-tile span {
-            font-size: 18px;
-            font-weight: bold;
-            color: #070; /* Green for film titles */
+        .left-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
         }
 
-        .film-tile:hover {
-            background-color: #222; /* Lighter background on hover */
+        .left-panel .attribute {
+            padding: 10px;
+            background-color: #222;
+            border-radius: 5px;
+        }
+
+        .right-panel {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .right-panel .section {
+            margin-bottom: 10px;
+            padding: 10px;
+            background-color: #222;
+            border-radius: 5px;
+        }
+
+        .upcoming-seances {
+            flex: 1;
+            background-color: #222;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-y: auto;
+        }
+
+        .seance-button {
+            display: block;
+            padding: 10px;
+            margin: 10px 0;
+            background-color: #333;
+            color: white;
+            border: 1px solid #555;
+            border-radius: 5px;
+            text-align: left;
+            text-decoration: none;
+            font-size: 14px;
+            transition: background-color 0.2s ease;
+        }
+
+        .seance-button:hover {
+            background-color: #444;
+        }
+
+        .seance-button strong {
+            display: block;
+            font-size: 16px;
+        }
+
+        .seance-details {
+            display: flex;
+            gap: 20px; /* Adds extra spacing between the items */
+            font-size: 14px;
         }
     </style>
 </head>
 <body>
-    <main>
-        {{ templatka }}
-        {{ film.tytul }}
+    <nav>
+        <a href="{% url 'filmy' %}">FILMY</a>
+        <a href="{% url 'repertuar' %}">STRONA GŁÓWNA</a>
+    </nav>
+    <main class="content">
+        <!-- Left Panel -->
+        <div class="left-panel">
+            <div class="attribute"><strong>Tytuł filmu:</strong> {{ film.tytul }}</div>
+            <div class="attribute"><strong>Gatunek:</strong> {{ film.gatunek }}</div>
+            <div class="attribute"><strong>Reżyser:</strong> {{ film.rezyser }}</div>
+            <div class="attribute"><strong>Czas trwania:</strong> {{ film.czas_trwania }} min</div>
+            <div class="attribute"><strong>Rok produkcji:</strong> {{ film.rok_produkcji }}</div>
+            <div class="attribute"><strong>PEGI:</strong> {{ film.pegi }}</div>
+            <div class="section">
+                <strong>Opis filmu:</strong>
+                <p>{{ film.opis }}</p>
+            </div>
+        </div>
+
+        <!-- Right Panel -->
+        <div class="right-panel">
+            <div class="upcoming-seances">
+                <strong>Nadchodzące seanse:</strong>
+                {% for seans in seanse %}
+                <a href="{% url 'seans' id=seans.seansid %}" class="seance-button">
+                    <strong>{{ seans.data | date:'d-m-Y' }} {{ seans.godzina | date:'H:i' }}</strong>
+                    <div class="seance-details">
+                        <span>Dubbing: {{ seans.jezykDubbingu }}</span>
+                        <span>Napisy: {{ seans.jezykNapisow }}</span>
+                        <span>Sala numer {{ seans.salaid }}</span>
+                    </div>
+                </a>
+                {% empty %}
+                <p>Brak nadchodzących seansów</p>
+                {% endfor %}
+            </div>
+        </div>
     </main>
 </body>
 </html>
