@@ -28,10 +28,15 @@
             color: white;
             font-size: 18px;
             font-weight: bold;
+            transition: color 0.2 ease;
         }
-            
+
         nav a:hover {
             color: #0f0; /* Green hover effect */
+        }
+
+        nav a:active {
+            color: #070;        
         }
 
         main {
@@ -72,22 +77,18 @@
 <body>
     <div>
         <nav>
-            <a href="#" class="text-xl font-bold">FILMY</a>
-            <a href="#" class="text-xl">STRONA GŁÓWNA</a>
-            <a href="#" class="text-xl">SEANS</a>
+            <a href="{% url 'repertuar' %}" class="{% if request.path == '/kino/' %}active{% endif %}">STRONA GŁÓWNA</a>
+            <a href="{% url 'filmy' %}" class="{% if request.path == '/kino/filmy/' %}active{% endif %}">FILMY</a>
         </nav>
     </div>
     <main>
         <div class="film-grid">
-            <!-- Original 6 films -->
             <div class="film-tile"><span>FILM 1</span></div>
             <div class="film-tile"><span>FILM 2</span></div>
             <div class="film-tile"><span>FILM 3</span></div>
             <div class="film-tile"><span>FILM 4</span></div>
             <div class="film-tile"><span>FILM 5</span></div>
             <div class="film-tile"><span>FILM 6</span></div>
-
-            <!-- Additional 6 films -->
             <div class="film-tile"><span>FILM 7</span></div>
             <div class="film-tile"><span>FILM 8</span></div>
             <div class="film-tile"><span>FILM 9</span></div>

@@ -33,7 +33,7 @@
 }
 
 .taken{
-    background-color: lightgray;
+    background-color: orange;
     cursor: not-allowed;
 }
 
