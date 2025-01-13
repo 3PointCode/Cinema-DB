@@ -20,13 +20,15 @@
 .screen{
     margin: 0 auto;
     margin-bottom: 50px;
-    background-color: lightgray;
+    background-color: #555;
 }
 
 .seat{
     box-sizing: border-box;
     margin: 5px;
-    border: 3px solid lightgray;
+    border: 2px solid #555;
+    border-radius: 5px;
+    background-color: lightgray;
     content: none;
     text-align: center;
     cursor: pointer;
@@ -38,5 +40,5 @@
 }
 
 .seat.selected{
-    background-color: green;
+    background-color: #0e0;
 }

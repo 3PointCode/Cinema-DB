@@ -151,10 +151,10 @@
                             </div>
                         </a>
                     {% endfor %}
-                </div>
+                </div> 
                 <div class="show-more">
-                    <button>+ POKAŻ WSZYSTKIE SEANSE</button>
-                </div>
+                    <button onclick="location.href='{% url 'film' film.tytul %}'">+ POKAŻ WSZYSTKIE SEANSE</button>
+                </div>                                   
             </div>
         {% endfor %}
     </div>
