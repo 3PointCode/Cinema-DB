@@ -41,33 +41,78 @@
         form button:hover {
             background-color: #0f0;
         }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            padding: 10px 0;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            transition: color 0.2 ease;
+        }
+
+        nav a:hover {
+            color: #0f0; /* Green hover effect */
+        }
+
+        nav a:active, nav a.active {
+            color: #070;        
+        }
+
+        .right-panel {
+            display: flex;
+            flex-direction: column;
+            flex: 2; /* Make this panel take more space compared to other panels */
+            padding: 20px; /* Add padding for better spacing */
+            background-color: #222; /* Consistent dark color */
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .right-panel .section {
+            margin-bottom: 10px;
+            padding: 20px; /* Increase padding for better readability */
+            background-color: #222;
+            border-radius: 5px;
+        }
     </style>
 </head>
 <body>
+    <nav>
+        <a href="{% url 'repertuar' %}">STRONA GŁÓWNA</a>
+        <a href="{% url 'filmy' %}">FILMY</a>
+    </nav>
     <div class="wrapper">
         <div class="info">
-            <p>Tytuł filmu: {{ seansData.tytul }}</p>
-            <p>Data projekcji: {{ seansData.data|date:'d-m-Y' }} : {{ seansData.godzina|date:'H:i' }}</p>
-            <p>Numer sali: {{ seansData.salaid }}</p>
-            <p>Język dubbingu: {{ seansData.jezykDubbingu}}</p>
-            <p>Język napisów: {{ seansData.jezykNapisow }}</p>
+            <p><span class="label">Tytuł filmu:</span> <span class="value">{{ seansData.tytul }}</span></p>
+            <p><span class="label">Data projekcji:</span> <span class="value">{{ seansData.data|date:'d-m-Y' }} : {{ seansData.godzina|date:'H:i' }}</span></p>
+            <p><span class="label">Język dubbingu:</span> <span class="value">{{ seansData.jezykDubbingu }}</span></p>
+            <p><span class="label">Język napisów:</span> <span class="value">{{ seansData.jezykNapisow }}</span></p>
+            <p><span class="label">Numer sali:</span> <span class="value">{{ seansData.salaid }}</span></p>
         </div>
-
-        <div class="cinema">
-            <div class="screen">&nbsp;</div>
-            <div class="audience">
-                {% for i in rowRange %}
-                    {% for j in columnRange %}
-                        <div data-id="{{i}}-{{j}}" class="seat {% for data in seatData %}{% if i == data.0 and j == data.1 %}taken{% endif %}{% endfor %}" onclick="handleSeatSelection(this)">&nbsp;</div>
+        <div class="right-panel">
+            <div class="cinema">
+                <div class="screen">E K R A N</div>
+                <div class="audience">
+                    {% for i in rowRange %}
+                        {% for j in columnRange %}
+                            <div data-id="{{i}}-{{j}}" class="seat {% for data in seatData %}{% if i == data.0 and j == data.1 %}taken{% endif %}{% endfor %}" onclick="handleSeatSelection(this)">&nbsp;</div>
+                        {% endfor %}
                     {% endfor %}
-                {% endfor %}
-               
+                
+                </div>
+                <form method="post">
+                    {% csrf_token %}
+                    {{ form }}
+                    <button type="submit">Zarezerwuj miejsce</button>
+                </form>
             </div>
-            <form method="post">
-                {% csrf_token %}
-                {{ form }}
-                <button type="submit">Zarezerwuj miejsce</button>
-            </form>
         </div>
     </div>
 </body>

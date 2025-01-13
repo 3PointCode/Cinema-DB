@@ -1,9 +1,15 @@
 .wrapper{
     display: flex;
+    font-family: 'Arial', sans-serif;
+    font-size: 20px;
 }
 
 .info{
     flex: 1;
+}
+
+.info .value {
+    color: #070;
 }
 
 .cinema{
@@ -21,6 +27,13 @@
     margin: 0 auto;
     margin-bottom: 50px;
     background-color: #555;
+    display: flex;
+    color: white;
+    font-size: 18px;
+    font-family: 'Arial', sans-serif;
+    align-items: center;
+    justify-content: center;
+    display: flex;
 }
 
 .seat{
@@ -35,7 +48,7 @@
 }
 
 .taken{
-    background-color: orange;
+    background-color: darkorange;
     cursor: not-allowed;
 }
 

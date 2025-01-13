@@ -99,7 +99,8 @@ def seans(request, id):
             'seatData': seatData,
             'rowRange': range(10),
             'columnRange': range(20),
-            'form': form
+            'form': form,
+            'templatka': loader.get_template('menu.html').render()
         }
         return render(request, 'seans.html', context)
     
