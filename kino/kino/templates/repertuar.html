@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -91,37 +92,60 @@
         .show-more button:hover {
             background-color: #444;
         }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            padding: 20px 0;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            transition: color 0.2 ease;
+        }
+
+        nav a:hover {
+            color: #0f0; /* Green hover effect */
+        }
+
+        nav a:active {
+            color: #070;        
+        }
     </style>
+
 </head>
 <body>
+    {{ templatka }}
     <div class="container">
-
-        <!-- Movie 1 -->
-        <div class="movie-section">
-            <div class="movie-header">
-                <div class="movie-poster">
-                    <img src="https://via.placeholder.com/150" alt="Poster">
+        {% for film in filmy %}
+            <div class="movie-section">
+                <div class="movie-header">
+                    <div class="movie-details">
+                        <h1 class="movie-title">{{ film.tytul }}</h1>
+                        <p class="movie-description">{{ film.opis }}</p>
+                        <p><strong>Reżyseria:</strong>{{ film.imie }} {{ film.nazwisko }}</p>
+                        <p><strong>Czas:</strong>{{ film.czastrwania }} minut</p>
+                        <p><strong>Rok produkcji:</strong>{{ film.rokprodukcji }} minut</p>
+                        <p><strong>PEGI:</strong>{{ film.wiekodbiorcy }}</p>
+                    </div>
                 </div>
-                <div class="movie-details">
-                    <h1 class="movie-title">Interstellar (2014)</h1>
-                    <p class="movie-description">Byt ludzkości na Ziemi dobiega końca wskutek zmian klimatycznych. Grupa naukowców odkrywa tunel czasoprzestrzenny, który umożliwia poszukiwanie nowego domu.</p>
-                    <p><strong>Reżyseria:</strong> Christopher Nolan</p>
-                    <p><strong>Obsada:</strong> Matthew McConaughey, Anne Hathaway, Jessica Chastain, Michael Caine, John Lithgow</p>
-                    <p><strong>Czas:</strong> 169 minut</p>
-                    <p><strong>PEGI:</strong> 13</p>
+                <div class="sessions">
+                    {{ film.seanseFilmu }}
+                    <div class="session">12:25 - 14:43<br>Sala 5<br>2D, Napisy</div>
+                    <div class="session">17:45 - 20:03<br>Sala 5<br>2D, Napisy</div>
+                    <div class="session">20:15 - 22:33<br>Sala 5<br>2D, Napisy</div>
+                    <div class="session">22:05 - 00:23<br>Sala 9<br>2D, Napisy</div>
+                </div>
+                <div class="show-more">
+                    <button>+ POKAŻ WSZYSTKIE SEANSE</button>
                 </div>
             </div>
-            <div class="sessions">
-                <div class="session">12:25 - 14:43<br>Sala 5<br>2D, Napisy</div>
-                <div class="session">17:45 - 20:03<br>Sala 5<br>2D, Napisy</div>
-                <div class="session">20:15 - 22:33<br>Sala 5<br>2D, Napisy</div>
-                <div class="session">22:05 - 00:23<br>Sala 9<br>2D, Napisy</div>
-            </div>
-            <div class="show-more">
-                <button>+ POKAŻ WSZYSTKIE SEANSE</button>
-            </div>
-        </div>
-
+        {% endfor %}
+        
         <!-- Movie 2 -->
         <div class="movie-section">
             <div class="movie-header">

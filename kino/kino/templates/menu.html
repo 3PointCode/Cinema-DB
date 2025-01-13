@@ -1,0 +1,6 @@
+<div>
+    <nav>
+        <a href="{% url 'repertuar' %}" class="{% if request.path == '/kino/' %}active{% endif %}">STRONA GŁÓWNA</a>
+        <a href="{% url 'filmy' %}" class="{% if request.path == '/kino/filmy/' %}active{% endif %}">FILMY</a>
+    </nav>
+</div>

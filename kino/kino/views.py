@@ -2,26 +2,40 @@ from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseBadRequest, HttpResponseRedirect
 from .models import Filmy, FilmyKlient, SeansKlient, RezerwacjaKlient, Rezerwacje, Klienci, Seanse, Statusrezerwacji
 from .forms import SeatReservationForm
+from django.urls import reverse
+from django.template import loader
 import datetime
+
 
 def index(request):
     return HttpResponse("strona glowna")
 
 def repertuar(request):
-    filmy = Filmy.objects.all()
+    filmy = FilmyKlient.objects.all()
+    for f in filmy:
+        seanse = SeansKlient.objects.all().filter(tytul=f.tytul)
+        f.seanseFilmu = seanse
     context = {
         'filmy': filmy,
-        'message': "hello world"
+        'templatka': loader.get_template('menu.html').render()
     }
     return render(request, 'repertuar.html', context)
 
 def filmy(request):
-    filmy = RezerwacjaKlient.objects.all().filter(seansid=12)
+    filmy = FilmyKlient.objects.all()
     context = {
         'filmy': filmy,
-        'message': "hello world"
+        'templatka': loader.get_template('menu.html').render()
     }
     return render(request, 'filmy.html', context)
+
+def film(request, tytul):
+    film = FilmyKlient.objects.all().filter(tytul=tytul).first()
+    context = {
+        'film': film,
+        'templatka': loader.get_template('menu.html').render()
+    }
+    return render(request, 'film.html', context)
 
 def seans(request, id):
     if request.method == "POST":
@@ -46,14 +60,15 @@ def seans(request, id):
                     return HttpResponseBadRequest("seans not found")
 
                 status = Statusrezerwacji.objects.get(statusid=1)
-                Rezerwacje.objects.create(
+                rez = Rezerwacje.objects.create(
                     klientid=client,
                     seansid=seans,
                     miejsce=seatSymbol,
                     statusid=status,
                     datazlozenia=datetime.datetime.now()
                 )
-                return HttpResponseRedirect("/kino/rezerwacjaSukces")
+                url = reverse("rezerwacjaSukces", kwargs={'id': rez.rezerwacjaid, 'seat': seatSymbol})
+                return HttpResponseRedirect(url)
             return HttpResponseBadRequest("seat already taken")
         else:
             return HttpResponseBadRequest("invalid form")
@@ -74,12 +89,18 @@ def seans(request, id):
         context = {
             'seansData': seansData,
             'seatData': seatData,
-            'message': "hello world",
             'rowRange': range(10),
             'columnRange': range(20),
             'form': form
         }
         return render(request, 'seans.html', context)
     
-def rezerwacjaSukces(request):
-    return render(request, 'rezerwacjaSukces.html', {})
+def rezerwacjaSukces(request, id = None, seat = None):
+    print(id)
+    print(seat)
+    if id == None or seat == None:
+        return HttpResponseRedirect("/kino")
+    return render(request, 'rezerwacjaSukces.html', {
+        'rezerwacja_id': id,
+        'miejsce': seat
+    })
